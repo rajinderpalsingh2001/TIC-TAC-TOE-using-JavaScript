@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TIC-TAC-TOE game</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script>
+        var counter = 0;
+        var winner="";
+        function ok(){
+            document.getElementById("displaycounter").innerHTML="<b>"+"X"+" Turn"+"</b>";
+        }
+        function btn_click(obj) {
+            var winner="";
+            counter++;
+            temp="";
+
+            if (counter % 2 == 0) {
+                obj.value = "0";
+                temp="X";
+            } else {
+                obj.value = "X";
+                temp="0";
+            }
+            obj.className = "btn btn-secondary btn-block";
+            document.getElementById("displaycounter").innerHTML="<b>"+temp+" Turn"+"</b>";
+            obj.disabled = true;
+
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            var btn3 = document.getElementById("btn3");
+            var btn4 = document.getElementById("btn4");
+            var btn5 = document.getElementById("btn5");
+            var btn6 = document.getElementById("btn6");
+            var btn7 = document.getElementById("btn7");
+            var btn8 = document.getElementById("btn8");
+            var btn9 = document.getElementById("btn9");
+            var iswin = false;
+
+            if (btn1.value == "0" && btn2.value == "0" && btn3.value == "0") {
+                winner="Player 2";
+                changeclass(btn1,btn2,btn3);
+            } else if (btn4.value == "0" && btn5.value == "0" && btn6.value == "0") {
+                winner="Player 2";
+                changeclass(btn4,btn5,btn6);
+            } else if (btn7.value == "0" && btn8.value == "0" && btn9.value == "0") {
+                winner="Player 2";
+                changeclass(btn7,btn8,btn9);
+            } else if (btn1.value == "0" && btn4.value == "0" && btn7.value == "0") {
+                winner="Player 2";
+                changeclass(btn1,btn4,btn7);
+
+            } else if (btn2.value == "0" && btn5.value == "0" && btn8.value == "0") {
+                winner="Player 2";
+                changeclass(btn2,btn5,btn8);
+
+            } else if (btn3.value == "0" && btn6.value == "0" && btn9.value == "0") {
+                winner="Player 2";
+                changeclass(btn3,btn6,btn9);
+
+            } else if (btn1.value == "0" && btn5.value == "0" && btn9.value == "0") {
+
+                winner="Player 2";
+                changeclass(btn1,btn5,btn9);
+
+            } else if (btn3.value == "0" && btn5.value == "0" && btn7.value == "0") {
+                winner="Player 2";
+                changeclass(btn3,btn5,btn7);
+
+                // First player Code
+            } else if (btn1.value == "X" && btn2.value == "X" && btn3.value == "X") {
+                winner="Player 1";
+                changeclass(btn1,btn2,btn3);
+
+            } else if (btn4.value == "X" && btn5.value == "X" && btn6.value == "X") {
+                winner="Player 1";
+                changeclass(btn4,btn5,btn6);
+
+            } else if (btn7.value == "X" && btn8.value == "X" && btn9.value == "X") {
+                winner="Player 1";
+                changeclass(btn7,btn8,btn9);
+
+            } else if (btn1.value == "X" && btn4.value == "X" && btn7.value == "X") {
+                winner="Player 1";
+                changeclass(btn1,btn4,btn7);
+
+            } else if (btn2.value == "X" && btn5.value == "X" && btn8.value == "X") {
+                winner="Player 1";
+                changeclass(btn2,btn5,btn8);
+
+            } else if (btn3.value == "X" && btn6.value == "X" && btn9.value == "X") {
+                winner="Player 1";
+                changeclass(btn3,btn6,btn9);
+
+            } else if (btn1.value == "X" && btn5.value == "X" && btn9.value == "X") {
+                winner="Player 1";
+                changeclass(btn1,btn5,btn9);
+            } else if (btn3.value == "X" && btn5.value == "X" && btn7.value == "X") {
+                winner="Player 1";
+                changeclass(btn3,btn5,btn7);
+
+            }
+            else if(counter==9){
+                document.getElementById("winname").innerText="Game DRAWS";
+                setTimeout(function () {
+                    var allbuttons = document.getElementsByName('gamebutton');
+                    document.getElementById("displaycounter").innerHTML="<b>"+"X"+" Turn"+"</b>";
+
+                    for (var i = 0; i < allbuttons.length; i++) {
+                        allbuttons[i].disabled = false;
+                        allbuttons[i].className = "btn btn-info btn-block";
+                        allbuttons[i].value = "";
+                        document.getElementById("winname").innerText="";
+
+
+                    }
+                    counter=0;
+
+                },2000);
+
+
+            }
+
+            function changeclass(button1,button2,button3){
+
+                button1.className = "btn btn-success btn-block";
+                button2.className = "btn btn-success btn-block";
+                button3.className = "btn btn-success btn-block";
+                iswin=true;
+
+                document.getElementById("winname").innerText= winner +" Wins";
+                document.getElementById("displaycounter").innerHTML="<b>"+"X"+" Turn"+"</b>";
+                counter=0;
+            }
+
+            if (iswin) {
+                setTimeout(function(){
+                    var allbuttons = document.getElementsByName('gamebutton');
+                    document.getElementById("displaycounter").innerHTML="<b>"+"X"+" Turn"+"</b>";
+
+                    for (var i = 0; i < allbuttons.length; i++) {
+                        allbuttons[i].disabled = false;
+                        allbuttons[i].className = "btn btn-info btn-block";
+                        allbuttons[i].value = "";
+                        document.getElementById("winname").innerText="";
+                    }
+                    counter=0;
+                },3000);
+            }
+        }
+        function ResetGame() {
+
+            if(confirm("Are you sure to Reset Game ?")) {
+                var allbuttons = document.getElementsByName('gamebutton');
+                document.getElementById("displaycounter").innerHTML="<b>"+"X"+" Turn"+"</b>";
+
+                for (var i = 0; i < allbuttons.length; i++) {
+                    allbuttons[i].disabled = false;
+                    allbuttons[i].className = "btn btn-info btn-block";
+                    allbuttons[i].value = "";
+                    document.getElementById("winname").innerText="";
+
+                }
+                counter=0;
+            }
+        }
+    </script>
+</head>
+<body onload="ok()">
+<div class="container">
+
+    <h1 class="text-center">TIC-TAC-TOE</h1>
+    <div class="text-center">
+        <span class="badge badge-success text-center">Developed By Sairish</span>
+    </div>
+
+    <div class="text-center">
+        <label id="displaycounter" style="color:red"></label>
+    </div>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn1" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn2" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn3" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn4" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn5" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn6" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn7" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn8" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <input type="button" id="btn9" onclick="btn_click(this)" name="gamebutton" value=""
+                               class="btn btn-info btn-block">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group">
+                    <input type="button" value="Reset" onclick="ResetGame()" class="btn btn-warning">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <span id="winname" style="font-size: x-large !important;" class="badge badge-success"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
